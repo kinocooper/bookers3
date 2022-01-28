@@ -1,4 +1,4 @@
-<%= render 'layouts/errors', obj: @book_comment %>
+<%#= render 'layouts/errors', obj: @book_comment %>
 
 <div class='container'>
   <div class='row'>
@@ -59,7 +59,8 @@
         <% end %>
       </table>
 
-      <%= form_with model:@book_comment,url:book_book_comments_path(@book), local:true do |f| %>
+      <%#= form_with model:@book_comment,url:book_book_comments_path(@book), local:true do |f| %>
+      <%= form_with model:[@book,@book_comment], local:true do |f| %>
         <%= f.label :comment %>
         <%= f.text_area :comment, class: 'form-control' %>
         <%= f.submit "送信" %>
