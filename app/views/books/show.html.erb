@@ -1,4 +1,4 @@
-<%= render 'layouts/errors', obj: @book_comment %>
+<%#= render 'layouts/errors', obj: @book_comment %>
 
 <div class='container'>
   <div class='row'>
@@ -58,6 +58,7 @@
           </tr>
         <% end %>
       </table>
+
 
       <%= form_with model:[@book,@book_comment], local:true do |f| %>
         <%= f.label :comment %>
