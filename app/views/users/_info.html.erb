@@ -8,12 +8,26 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  <tr>
+	  <th>follows</th>
+	  <th><%= "ふぉろうず" %></th>
+  </tr>
+  <tr>
+	  <th>followers</th>
+	  <th><%= "ふぉろわーず" %></th>
+  </tr>
+
+
 </table>
 
 <% if !(user.name == "guestuser") %>
   <div class='row'>
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-      <i class="fas fa-user-cog"></i>
+    <% if user == current_user %>
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    <% else %>
+      <%= link_to "ふぉろ／りむ", books_path, class: "btn btn-outline-success btn-block" %>
     <% end %>
   </div>
 <% end %>
