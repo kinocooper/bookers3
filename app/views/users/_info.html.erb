@@ -31,9 +31,9 @@
         <i class="fas fa-user-cog"></i>
       <% end %>
     <% elsif user.already_followed_by?(current_user) %>
-      <%= link_to "フォローを外す", user_relationship_path(user.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+      <%= link_to "フォローを外す", user_relationship_path(user.id), method: :delete, class: "col-6 btn btn-outline-danger btn-block" %>
     <% else %>
-      <%= link_to "フォローする", user_relationship_path(user.id), method: :post, class: "btn btn-outline-success btn-block" %>
+      <%= link_to "フォローする", user_relationship_path(user.id), method: :post, class: "col-6 btn btn-outline-success btn-block" %>
     <% end %>
   </div>
 <% end %>
