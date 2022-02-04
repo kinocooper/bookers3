@@ -39,8 +39,8 @@ class User < ApplicationRecord
 
     # ログイン中のユーザが対象userをフォローしていればtrueを返す
   def already_followed_by?(user)
-    passive_relationships.exists?(follower_id:user.id)
-    # passive_relationships.include?(user)
+    # passive_relationships.exists?(follower_id:user.id)
+    followeds.include?(user)
   end
 
 
