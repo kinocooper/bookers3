@@ -58,16 +58,25 @@
   <!--<div class="container">-->
   <!--  <div class="row mx-auto">-->
 
-  <%#= form_with model:x, url:"y", local:true do |f| %>
-  <%= form_with url:search_path, method: :get, local:true do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control book_title' %>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="col-6 mx-auto">
+
+        <%= form_with url:search_path, method: :get, local:true do |f| %>
+          <div class="form-group">
+            <%= f.text_field :search_words, class: 'search_words' %>
+          </div>
+
+          <div class="form-group">
+         <%= f.select :search_table, [["Book", "books"],["User", "users"]] %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "検索", class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      <% end %>
+
     </div>
-    <div class="form-group">
-      <%= f.submit class: 'btn btn-success' %>
-    </div>
-  <% end %>
-  <!--  </div>-->
-  <!--</div>-->
+  </div>
 </header>

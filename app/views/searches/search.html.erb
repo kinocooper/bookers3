@@ -1,2 +1,10 @@
-<h1>Searches#search</h1>
-<p>Find me in app/views/searches/search.html.erb</p>
+<h2><%= "#{@search_table} search for" %> "<%= "#{@search_words}" %>"</h2>
+
+<% if @search_table == "books" %>
+  <%= render '/books/index', books:@books %>
+
+<% elsif @search_table == "users" %>
+  <%= render '/users/index', users:@users %>
+<% end %>
+
+
