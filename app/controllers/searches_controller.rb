@@ -3,20 +3,41 @@ class SearchesController < ApplicationController
   def search
     @search_table = params[:search_table]
     @search_words = params[:search_words]
+    search_pattern = params[:search_pattern]
 
-    # 検索対象がbooksか？
     if @search_table == "books"
-      # booksテーブルのnameを検索にかけて条件に合うモデルを取得
-      @books = Book.where('title LIKE ?', "%#{params[:search_words]}%")
-      # (自動的にsearch.html.erbへrender)
+      search_column = "title"
+      # @books = Book.search_specified_pattern(search_pattern,search_column)
+      case search_pattern
+      when "perfect"
+        @books = Book.where("#{search_column} LIKE ?","#{@search_words}")
+      when "prefix"
+        @books = Book.where("#{search_column} LIKE ?", "#{@search_words}%")
+      when "backward"
+        @books = Book.where("#{search_column} LIKE ?", "%#{@search_words}")
+      when "partial"
+        @books = Book.where("#{search_column} LIKE ?", "%#{@search_words}%")
+      end
 
-    # 検索対象がusersか？
     elsif @search_table == "users"
-      # usersテーブルのtitleを検索にかけて条件に合うモデルを取得
-      @users = User.where('name LIKE ?', "%#{params[:search_words]}%")
-      # (自動的にsearch.html.erbへrender)
+      search_column = "name"
+      # @users = User.search_specified_pattern(search_pattern,search_column)
+      case search_pattern
+      when "perfect"
+        @users = User.where("#{search_column} LIKE ?","#{@search_words}")
+      when "prefix"
+        @users = User.where("#{search_column} LIKE ?", "#{@search_words}%")
+      when "backward"
+        @users = User.where("#{search_column} LIKE ?", "%#{@search_words}")
+      when "partial"
+        @users = User.where("#{search_column} LIKE ?", "%#{@search_words}%")
+      end
     end
 
   end
+
+
+  private
+
 
 end
