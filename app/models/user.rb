@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  
+
   # include Search
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -45,6 +45,20 @@ class User < ApplicationRecord
     # passive_relationships.exists?(follower_id:user.id)
     followeds.include?(user)
   end
+
+  def self.search_specified_pattern(search_pattern,search_words)
+    case search_pattern
+    when "perfect"
+      where("name LIKE ?","#{search_words}")
+    when "prefix"
+      where("name LIKE ?", "#{search_words}%")
+    when "backward"
+      where("name LIKE ?", "%#{search_words}")
+    when "partial"
+      where("name LIKE ?", "%#{search_words}%")
+    end
+  end
+
 
 
 end

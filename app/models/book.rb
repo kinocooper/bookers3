@@ -16,16 +16,17 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  # def search_specified_pattern(search_pattern,search_column)
-  #   case search_pattern
-  #   when "perfect"
-  #     where("#{search_column} LIKE ?","#{@search_words}")
-  #   when "prefix"
-  #     where("#{search_column} LIKE ?", "%#{@search_words}")
-  #   when "backward"
-  #     where("#{search_column} LIKE ?", "#{@search_words}%")
-  #   when "partial"
-  #     where("#{search_column} LIKE ?", "%#{@search_words}%")
-  #   end
+  def self.search_specified_pattern(search_pattern,search_words)
+    case search_pattern
+    when "perfect"
+      where("title LIKE ?","#{search_words}")
+    when "prefix"
+      where("title LIKE ?", "#{search_words}%")
+    when "backward"
+      where("title LIKE ?", "%#{search_words}")
+    when "partial"
+      where("title LIKE ?", "%#{search_words}%")
+    end
+  end
 
 end
