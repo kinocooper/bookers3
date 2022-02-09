@@ -21,7 +21,7 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
 
-          <td class="favorite-btn_<%= @book.id %>">
+          <td id="favorite-btn_<%= @book.id %>">
             <%= render 'favorites/favorite-btn', book: @book %>
           <td>
 
@@ -35,13 +35,7 @@
       </table>
 
       <%= render "book_comments/index", book:@book %>
-
-
-      <%= form_with model:[@book,@book_comment], local:true do |f| %>
-        <%= f.label :comment %>
-        <%= f.text_area :comment, class: 'form-control' %>
-        <%= f.submit "送信" %>
-      <% end %>
+      <%= render "book_comments/form", book:@book, book_comment:@book_comment %>
 
     </div>
   </div>
