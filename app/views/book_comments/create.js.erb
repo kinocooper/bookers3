@@ -1,3 +1,4 @@
 $("#book_<%= @book.id %> .comments-count").html("<%= j(render 'book_comments/counter',book: @book) %>");
-$("#book-commentes").html("<%= j(render 'index', book: @book) %>");
-$("#book_comment_comment").val("");count
+$("#book-comments").html("<%= j(render 'index', book: @book) %>");
+<!--↓セレクタ：コメント投稿フォームに自動で付与されるid book_commentモデルのcommentカラム-->
+$("#book_comment_comment").val("");
